@@ -1,0 +1,16 @@
+@echo off
+
+echo [1/5] TypeScriptファイルを実行しています...
+npx ts-node src/index.ts
+
+echo [2/5] SEA設定でnodeを実行しています...
+node --experimental-sea-config sea-config.json
+
+echo [3/5] 実行ファイルをhello.exeにコピーしています...
+node -e "require('fs').copyFileSync(process.execPath, 'hello.exe')"
+
+echo [4/5] postjectでSEA BLOBを埋め込んでいます...
+npx postject hello.exe NODE_SEA_BLOB sea-prep.blob --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2
+
+echo [5/5] hello.exeを実行しています...
+hello.exe
